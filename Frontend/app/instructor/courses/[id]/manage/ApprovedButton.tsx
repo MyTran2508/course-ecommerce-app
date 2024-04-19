@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/reduxHooks";
 import React, { Fragment, useEffect, useState } from "react";
 import Message from "./Message";
 import { Course } from "@/types/course.type";

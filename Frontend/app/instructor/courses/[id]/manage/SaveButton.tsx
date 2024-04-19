@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { setStatusSaveCourse } from "@/redux/features/courseSlice";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch } from "@/redux/hooks/reduxHooks";
 import React, { Fragment, useState } from "react";
 
 function SaveButton() {

@@ -3,7 +3,7 @@ import { useParams, useRouter } from "next/navigation";
 import React, { Fragment, useEffect, useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import SaveButton from "./SaveButton";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/reduxHooks";
 import { RoleType } from "@/types/user.type";
 import { Role } from "@/utils/resources";
 import ApprovedButton from "./ApprovedButton";
@@ -11,7 +11,6 @@ import RequestApprovalButton from "./RequestApprovalButton";
 import { handleCountFieldsInSection } from "@/utils/function";
 import { Course } from "@/types/course.type";
 import { Button } from "@/components/ui/button";
-import { updateSection } from "@/redux/features/sectionSlice";
 
 function CreateCourseNavBar() {
   const router = useRouter();

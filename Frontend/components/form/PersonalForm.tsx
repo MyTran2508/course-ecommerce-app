@@ -32,7 +32,7 @@ import {
 } from "@/redux/services/userApi";
 import showToast from "@/utils/showToast";
 import { Role, ToastMessage, ToastStatus } from "@/utils/resources";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/reduxHooks";
 import { updateUser } from "@/redux/features/userSlice";
 
 const formSchema = formPersonalSchema;
@@ -65,7 +65,7 @@ function PersonalForm(props: PersonalProps) {
     handleSetDefaultValueFrom(userInfor)
   );
   const [file, setFile] = useState<File>();
-  const [currentAvatar, setCurrentAvatar] = useState();
+  const [currentAvatar, setCurrentAvatar] = useState<string>();
 
   const [updateAvatar] = useUploadImageMutation();
   const [updateInformation] = useUpdateUserMutation();
@@ -90,7 +90,7 @@ function PersonalForm(props: PersonalProps) {
   useEffect(() => {
     setDefaultValueFrom(handleSetDefaultValueFrom(userInfor));
     handleImageError(false);
-    setCurrentAvatar(avatarData);
+    setCurrentAvatar(avatarData.rawAvatar as string);
   }, [userInfor, avatarData]);
 
   const handleClickEdit = () => {

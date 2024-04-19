@@ -1,9 +1,8 @@
 import { DataResponse, ListResponse } from "@/types/response.type";
 import { createApi } from "@reduxjs/toolkit/query/react";
-import {baseQueryWithToken } from "../baseQuery";
+import { baseQueryWithToken } from "../baseQuery";
 import { Course, CourseIssueReport } from "@/types/course.type";
 import { SearchCourseRequest, SearchRequest } from "@/types/request.type";
-
 
 export const courseApi = createApi({
   reducerPath: "courseApi",
@@ -19,7 +18,7 @@ export const courseApi = createApi({
           method: "POST",
           body: bodyFormData,
           formData: true,
-          responseHandler: "content-type"
+          responseHandler: "content-type",
         };
       },
     }),
@@ -31,7 +30,7 @@ export const courseApi = createApi({
           url: "/api/courses/course/videos",
           method: "POST",
           body: bodyFormData,
-          formData: true
+          formData: true,
         };
       },
     }),
@@ -40,81 +39,90 @@ export const courseApi = createApi({
         return {
           url: "/api/courses/course/download",
           params: {
-            path: path
+            path: path,
           },
-          responseHandler: "text"
-        }
-      }
+          responseHandler: "text",
+        };
+      },
     }),
     createCourse: builder.mutation<DataResponse, Course>({
       query: (data: Course) => {
         return {
           url: "/api/courses/course/add",
           method: "POST",
-          body: data
-        }
-      }
+          body: data,
+        };
+      },
     }),
     updateCourseById: builder.mutation<DataResponse, Course>({
-       query: (data: Course) => {
-         return {
-           url: `/api/courses/course/update/${data.id}`,
-           method: "PUT",
-           body: data
-         }
+      query: (data: Course) => {
+        return {
+          url: `/api/courses/course/update/${data.id}`,
+          method: "PUT",
+          body: data,
+        };
       },
-      invalidatesTags: () => [{type: "Course", id: "course"}]
-     }),
+      invalidatesTags: () => [{ type: "Course", id: "course" }],
+    }),
     getCourseById: builder.query<DataResponse, string>({
       query: (id: string) => {
-         return {
-           url: `/api/courses/course/get-by-id`,
-           params: {
-             id: id
-           }
-         }
+        return {
+          url: `/api/courses/course/get-by-id`,
+          params: {
+            id: id,
+          },
+        };
       },
       providesTags() {
-        return [{type: "Course", id: "course"}]
-      }
+        return [{ type: "Course", id: "course" }];
+      },
     }),
-    getNewestCourse: builder.query<DataResponse, {topicId: number , size: number}>({
+    getNewestCourse: builder.query<
+      DataResponse,
+      { topicId: number; size: number }
+    >({
       query: ({ topicId, size }) => {
         return {
           url: `/api/courses/course/newest/${topicId}/${size}`,
-        }
+        };
       },
       providesTags() {
-        return [{type: "Course", id: "course"}]
-      }
+        return [{ type: "Course", id: "course" }];
+      },
     }),
-    getPopularCourse: builder.query<DataResponse, {topicId: number, size: number}>({
+    getPopularCourse: builder.query<
+      DataResponse,
+      { topicId: number; size: number }
+    >({
       query: ({ topicId, size }) => {
         return {
           url: `/api/courses/course/popular/${topicId}/${size}`,
-        }
+        };
       },
-       providesTags() {
-        return [{type: "Course", id: "course"}]
-      }
+      providesTags() {
+        return [{ type: "Course", id: "course" }];
+      },
     }),
-    getCourseByUserId: builder.query<ListResponse, {id: string, pageIndex: number, pageSize: number}>({
-      query: ({id, pageIndex, pageSize}) => {
-         return {
-           url: `/api/courses/course/get-all-by-user-id`,
-           params: {
-             userId: id,
-             pageIndex: pageIndex,
-             pageSize: pageSize,
-           }
-         }
+    getCourseByUserId: builder.query<
+      ListResponse,
+      { id: string; pageIndex: number; pageSize: number }
+    >({
+      query: ({ id, pageIndex, pageSize }) => {
+        return {
+          url: `/api/courses/course/get-all-by-user-id`,
+          params: {
+            userId: id,
+            pageIndex: pageIndex,
+            pageSize: pageSize,
+          },
+        };
       },
     }),
     getAllCourse: builder.query<ListResponse, null>({
       query: () => {
-         return {
-           url: `/api/courses/course/get-all`,
-         }
+        return {
+          url: `/api/courses/course/get-all`,
+        };
       },
     }),
     filterCourse: builder.mutation<ListResponse, SearchCourseRequest>({
@@ -122,12 +130,12 @@ export const courseApi = createApi({
         return {
           url: `/api/courses/course/filter`,
           method: "POST",
-          body: data
-        }
-      }
+          body: data,
+        };
+      },
     }),
     filterCourseAdmin: builder.mutation<ListResponse, SearchRequest>({
-      query: (data: SearchRequest ) => {
+      query: (data: SearchRequest) => {
         return {
           url: `/api/courses/course/search-by-keyword`,
           method: "POST",
@@ -135,32 +143,42 @@ export const courseApi = createApi({
         };
       },
     }),
-    updateApproved: builder.mutation<DataResponse, {courseId: string, isApproved: boolean, courseIssueReport: CourseIssueReport | {}}>({
-      query: ({courseId, isApproved, courseIssueReport} ) => {
+    updateApproved: builder.mutation<
+      DataResponse,
+      {
+        courseId: string;
+        isApproved: boolean;
+        courseIssueReport: CourseIssueReport | {};
+      }
+    >({
+      query: ({ courseId, isApproved, courseIssueReport }) => {
         return {
           url: `/api/courses/course/update-approved`,
           method: "POST",
           params: {
             id: courseId,
-            isApproved: isApproved
+            isApproved: isApproved,
           },
           body: courseIssueReport,
         };
       },
-      invalidatesTags: () => [{type: "Course", id: "course"}]
+      invalidatesTags: () => [{ type: "Course", id: "course" }],
     }),
-    updateAwaitingApproval: builder.mutation<DataResponse, { courseId: string, isAwaitingApproval: boolean }>({
-      query: ({courseId, isAwaitingApproval}) => {
+    updateAwaitingApproval: builder.mutation<
+      DataResponse,
+      { courseId: string; isAwaitingApproval: boolean }
+    >({
+      query: ({ courseId, isAwaitingApproval }) => {
         return {
           url: `/api/courses/course/update-awaiting-approval`,
           method: "POST",
           params: {
             id: courseId,
-           isAwaitingApproval: isAwaitingApproval
+            isAwaitingApproval: isAwaitingApproval,
           },
         };
       },
-      invalidatesTags: () => [{type: "Course", id: "course"}]
+      invalidatesTags: () => [{ type: "Course", id: "course" }],
     }),
     saleByTopics: builder.query<DataResponse, number>({
       query: (targetYear: number) => {
@@ -182,17 +200,19 @@ export const courseApi = createApi({
         };
       },
     }),
-    getTotalApprovedCourse: builder.mutation<DataResponse, {targetMonth:number, targetYear:number}>({
-      query: (data: {targetMonth:number, targetYear: number}) => {
+    getTotalApprovedCourse: builder.mutation<
+      DataResponse,
+      { targetMonth: number; targetYear: number }
+    >({
+      query: (data: { targetMonth: number; targetYear: number }) => {
         return {
           url: `/api/courses/course/get-total-approved-course`,
           method: "POST",
-          body: data
+          body: data,
         };
       },
     }),
   }),
-
 });
 
 export const {
@@ -216,5 +236,5 @@ export const {
   useSalesSamePeriodByTopicsQuery,
   useGetTotalApprovedCourseMutation,
   useLazySalesSamePeriodByTopicsQuery,
- useLazySaleByTopicsQuery,
+  useLazySaleByTopicsQuery,
 } = courseApi;

@@ -31,7 +31,7 @@ import {
   useRegisterUserMutation,
   useVerifyForgotPasswordOTPMutation,
 } from "@/redux/services/authApi";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch } from "@/redux/hooks/reduxHooks";
 import { DataResponse } from "@/types/response.type";
 import { Action, StatusCode, ToastStatus } from "@/utils/resources";
 import showToast from "@/utils/showToast";

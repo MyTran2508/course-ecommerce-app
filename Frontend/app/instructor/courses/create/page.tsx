@@ -5,10 +5,11 @@ import {
   setManageCourse,
   setParamCourseId,
 } from "@/redux/features/courseSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/reduxHooks";
 import { useCreateCourseMutation } from "@/redux/services/courseApi";
 import { Course } from "@/types/course.type";
 import { DataResponse } from "@/types/response.type";
+import { extractId } from "@/utils/function";
 import { StatusCode, ToastMessage, ToastStatus } from "@/utils/resources";
 import showToast from "@/utils/showToast";
 import Link from "next/link";
@@ -60,7 +61,7 @@ function CreateCoursePage() {
   const handleToast = (dataResult: DataResponse) => {
     if (dataResult?.statusCode === StatusCode.REQUEST_SUCCESS) {
       showToast(ToastStatus.SUCCESS, ToastMessage.CREATE_COURSE_SUCCESS);
-      handleChangeRouteManageCourse((dataResult.data as Course).id);
+      handleChangeRouteManageCourse(extractId(dataResult.data as string));
     } else {
       showToast(ToastStatus.ERROR, ToastMessage.DATA_COURSE_EXISTED);
     }

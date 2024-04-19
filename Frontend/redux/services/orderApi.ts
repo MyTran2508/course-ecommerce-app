@@ -1,8 +1,7 @@
 import { DataResponse } from "@/types/response.type";
 import { createApi } from "@reduxjs/toolkit/query/react";
-import {baseQueryWithToken } from "../baseQuery";
+import { baseQueryWithToken } from "../baseQuery";
 import { Order } from "@/types/order.type";
-
 
 export const orderApi = createApi({
   reducerPath: "orderApi",
@@ -13,18 +12,18 @@ export const orderApi = createApi({
         return {
           url: "/api/users/order/add",
           method: "POST",
-          body: data
-        }
-      }
+          body: data,
+        };
+      },
     }),
     getOrderById: builder.query<DataResponse, string>({
       query: (id: string) => {
-         return {
-           url: `/api/users/order/get-by-id`,
-           params: {
-             id: id
-           }
-         }
+        return {
+          url: `/api/users/order/get-by-id`,
+          params: {
+            id: id,
+          },
+        };
       },
     }),
     monthlySales: builder.query<DataResponse, number>({
@@ -56,5 +55,5 @@ export const {
   useMonthlySalesQuery,
   useSalesSamePeriodQuery,
   useLazyMonthlySalesQuery,
-  useLazySalesSamePeriodQuery
+  useLazySalesSamePeriodQuery,
 } = orderApi;

@@ -1,7 +1,7 @@
 "use client";
 import { logout } from "@/redux/features/authSlice";
 import { removeUser } from "@/redux/features/userSlice";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch } from "@/redux/hooks/reduxHooks";
 import { ToastMessage, ToastStatus } from "@/utils/resources";
 import showToast from "@/utils/showToast";
 import Link from "next/link";

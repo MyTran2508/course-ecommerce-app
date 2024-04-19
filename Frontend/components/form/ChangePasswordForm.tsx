@@ -16,7 +16,7 @@ import { Button } from "../ui/button";
 import { User } from "@/types/user.type";
 import Image from "next/image";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/reduxHooks";
 import { ChangePasswordRequest } from "@/types/request.type";
 import { useChangePasswordMutation } from "@/redux/services/userApi";
 import { DataResponse } from "@/types/response.type";

@@ -1,5 +1,5 @@
 "use client";
-import SignUpForm from "@/components/form/SignUpForm";
+import SignUpForm from "@/components/Form/SignUpForm";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { IoChevronBackCircleSharp } from "react-icons/io5";

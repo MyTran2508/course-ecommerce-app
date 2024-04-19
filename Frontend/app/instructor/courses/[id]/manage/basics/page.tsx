@@ -1,11 +1,11 @@
 "use client";
 import Loading from "@/app/(root)/user/personal/loading";
-import CourseInforForm from "@/components/form/CourseInforForm";
+import CourseInforForm from "@/components/Form/CourseInforForm";
 import {
   setManageCourse,
   setParamCourseId,
 } from "@/redux/features/courseSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/reduxHooks";
 import { useGetCourseByIdQuery } from "@/redux/services/courseApi";
 import { Course } from "@/types/course.type";
 import { useParams } from "next/navigation";

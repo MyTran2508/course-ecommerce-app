@@ -1,8 +1,8 @@
 "use client";
-import CartItem from "@/components/CartItem";
+import CartItem from "@/components/Card/CartItem";
 // import Router from "@/components/router/router";
 import { Button } from "@/components/ui/button";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/reduxHooks";
 import { useGetAllCourseQuery } from "@/redux/services/courseApi";
 import { Cart } from "@/types/cart.type";
 import { Course } from "@/types/course.type";

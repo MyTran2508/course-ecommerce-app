@@ -26,7 +26,7 @@ import {
   ToastStatus,
 } from "@/utils/resources";
 import { useUpdateApprovedMutation } from "@/redux/services/courseApi";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/reduxHooks";
 import showToast from "@/utils/showToast";
 import { setManageCourse } from "@/redux/features/courseSlice";
 import { Course } from "@/types/course.type";

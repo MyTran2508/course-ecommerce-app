@@ -1,16 +1,17 @@
 "use client";
 import Loading from "@/app/(root)/user/personal/loading";
-import CourseSectionForm from "@/components/form/CourseSectionForm";
+import CourseSectionForm from "@/components/Form/CourseSectionForm";
 import { useGetContentByCourseIdQuery } from "@/redux/services/contentApi";
 import Content from "@/types/content.type";
 import { Section } from "@/types/section.type";
 import { useParams, useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import _ from "lodash";
 import { ToastMessage, ToastStatus } from "@/utils/resources";
 import showToast from "@/utils/showToast";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch } from "@/redux/hooks/reduxHooks";
 import { setSections } from "@/redux/features/sectionSlice";
+import TimePicker from "react-time-picker";
 
 function CurriculumPage() {
   const router = useRouter();
@@ -20,7 +21,6 @@ function CurriculumPage() {
   const { data: contentData, isLoading: isContentLoading } =
     useGetContentByCourseIdQuery(courseId);
   let sections: Section[] = [];
-
   if (isContentLoading) return <Loading />;
 
   if (!(contentData?.data as Content).id) {
@@ -30,7 +30,9 @@ function CurriculumPage() {
     sections = _.cloneDeep(
       (contentData?.data as Content).sections
     ) as Section[];
-    dispatch(setSections((contentData?.data as Content).sections as Section[]));
+    dispatch(
+      setSections((contentData?.data as Content)?.sections as Section[])
+    );
   }
 
   return (

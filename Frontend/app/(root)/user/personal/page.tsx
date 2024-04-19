@@ -1,12 +1,12 @@
 "use client";
-import PersonalForm from "@/components/form/PersonalForm";
+import PersonalForm from "@/components/Form/PersonalForm";
 import { AuthState } from "@/redux/features/authSlice";
 // import { useGetByUserNameQuery } from "@/redux/services/authApi";
 import { User } from "@/types/user.type";
 import React, { Suspense, useEffect } from "react";
 import Loading from "./loading";
 import { useGetByUserNameQuery } from "@/redux/services/userApi";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppSelector } from "@/redux/hooks/reduxHooks";
 import { AiOutlineMenu } from "react-icons/ai";
 
 function PagePersonal() {

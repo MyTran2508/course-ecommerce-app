@@ -15,7 +15,7 @@ interface CourseContentLearningProps {
   section: Section;
   setLecture: React.Dispatch<React.SetStateAction<Lecture | undefined>>;
   currentProgress: number;
-  lectureActive: number;
+  lectureActive: string;
 }
 
 function CourseContentLearning(props: CourseContentLearningProps) {
@@ -25,7 +25,8 @@ function CourseContentLearning(props: CourseContentLearningProps) {
   );
 
   let totalLectionInSections =
-    section.lectures[section.lectures.length - 1]?.ordinalNumber ?? 0;
+    (section.lectures as Lecture[])[(section.lectures as Lecture[]).length - 1]
+      ?.ordinalNumber ?? 0;
   let countLectureSuccessInSection = 0;
 
   if (totalLectionInSections <= currentProgress) {
@@ -33,8 +34,11 @@ function CourseContentLearning(props: CourseContentLearningProps) {
     countLectureSuccessInSection = totalLectionInSections;
   } else {
     countLectureSuccessInSection =
-      section.lectures.length - (totalLectionInSections - currentProgress) > 0
-        ? section.lectures.length - (totalLectionInSections - currentProgress)
+      (section.lectures as Lecture[]).length -
+        (totalLectionInSections - currentProgress) >
+      0
+        ? (section.lectures as Lecture[]).length -
+          (totalLectionInSections - currentProgress)
         : 0;
     totalLectionInSections = currentProgress;
   }
@@ -71,7 +75,7 @@ function CourseContentLearning(props: CourseContentLearningProps) {
               {open ? (
                 <>
                   <div>
-                    {section?.lectures
+                    {(section?.lectures as Lecture[])
                       .filter((lecture) => lecture.ordinalNumber !== -1)
                       .map((lecture, index) => {
                         let durationLecture: string = "";
@@ -98,7 +102,7 @@ function CourseContentLearning(props: CourseContentLearningProps) {
                                 ? ""
                                 : "text-gray-500 bg-gray-100"
                             } ${
-                              lectureActive == lecture.ordinalNumber
+                              lectureActive == lecture.id
                                 ? "bg-orange-300"
                                 : null
                             }`}

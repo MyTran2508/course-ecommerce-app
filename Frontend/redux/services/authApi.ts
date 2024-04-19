@@ -7,7 +7,7 @@ import { baseQuery } from "../baseQuery";
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: baseQuery,
-  tagTypes:['User'],
+  tagTypes: ["User"],
   endpoints: (builder) => ({
     loginUser: builder.mutation<DataResponse, LoginRequest>({
       query: (body: LoginRequest) => {
@@ -18,7 +18,10 @@ export const authApi = createApi({
         };
       },
     }),
-    registerUser: builder.mutation<DataResponse, Omit<User, "id" | "photos" |"roles">>({
+    registerUser: builder.mutation<
+      DataResponse,
+      Omit<User, "id" | "photos" | "roles">
+    >({
       query: (body: Omit<User, "id" | "photos">) => {
         return {
           url: "api/users/user/register/send-otp",
@@ -52,21 +55,24 @@ export const authApi = createApi({
           url: "api/users/user/forget-password/send-otp",
           method: "POST",
           params: {
-            email
-          }
-        }
-      }
+            email,
+          },
+        };
+      },
     }),
-     
-    verifyForgotPasswordOTP : builder.mutation<DataResponse, ForgotPasswordRequest >({
+
+    verifyForgotPasswordOTP: builder.mutation<
+      DataResponse,
+      ForgotPasswordRequest
+    >({
       query: (data) => {
         return {
           url: "api/users/user/forget-password/verify",
           method: "POST",
-          body: data
-        }
-      }
-    })
+          body: data,
+        };
+      },
+    }),
   }),
 });
 
@@ -75,5 +81,5 @@ export const {
   useRegisterUserMutation,
   useVerifyRegisterOTPMutation,
   useVerifyForgotPasswordOTPMutation,
-  useForgotPasswordMutation
+  useForgotPasswordMutation,
 } = authApi;

@@ -7,7 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import PersonalForm from "../form/PersonalForm";
+import PersonalForm from "../Form/PersonalForm";
 import { User } from "@/types/user.type";
 
 interface UserDialogProps {

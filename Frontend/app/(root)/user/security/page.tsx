@@ -1,5 +1,5 @@
 "use client";
-import PasswordForm from "@/components/form/ChangePasswordForm";
+import PasswordForm from "@/components/Form/ChangePasswordForm";
 import React from "react";
 
 function PageSecurity() {

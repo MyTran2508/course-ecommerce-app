@@ -48,31 +48,31 @@ export const AuthMiddleware: Middleware =
   (api: MiddlewareAPI) => {
 
     return (next) => (action: AnyAction) => {
-    const roles = api.getState().persistedReducer.userReducer.user.roles
-    const loginUrl = '/login';
-    const homeUrl = '/'
+    // const roles = api.getState().persistedReducer.userReducer.user.roles
+    // const loginUrl = '/login';
+    // const homeUrl = '/'
       
-    if (typeof window !== 'undefined') { 
-      const pathname = window.location.pathname;
-      if (roles) {
-        const role = roles[0].id
-        if ((isAdminRoute(pathname) || isManagerRoute(pathname)) && _.isEqual(role, Role.USER)) {
-          window.location.href = homeUrl
-        }
+    // if (typeof window !== 'undefined') { 
+    //   const pathname = window.location.pathname;
+    //   if (roles) {
+    //     const role = roles[0].id
+    //     if ((isAdminRoute(pathname) || isManagerRoute(pathname)) && _.isEqual(role, Role.USER)) {
+    //       window.location.href = homeUrl
+    //     }
 
-        if ((isUserRoute(pathname) || isManagerRoute(pathname) || isAdminRoute(pathname)) && _.isEqual(role, Role.GUEST)) {
-          window.location.href = loginUrl
-        }
-        return next(action);
-      } else {
-        if (isManagerRoute(pathname) || isAdminRoute(pathname)) {
-          window.location.href = homeUrl
-        } else {
-          return next(action);
-        }  
-      }
-    }
-    // return next(action);
+    //     if ((isUserRoute(pathname) || isManagerRoute(pathname) || isAdminRoute(pathname)) && _.isEqual(role, Role.GUEST)) {
+    //       window.location.href = loginUrl
+    //     }
+    //     return next(action);
+    //   } else {
+    //     if (isManagerRoute(pathname) || isAdminRoute(pathname)) {
+    //       window.location.href = homeUrl
+    //     } else {
+    //       return next(action);
+    //     }  
+    //   }
+    // }
+    return next(action);
   }
 } 
 

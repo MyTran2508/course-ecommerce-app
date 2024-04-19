@@ -4,13 +4,13 @@ import { IoIosArrowBack, IoIosCloseCircleOutline } from "react-icons/io";
 import { BiNotepad } from "react-icons/bi";
 import { BsQuestionCircle } from "react-icons/bs";
 import CourseContentLearning from "@/components/CourseContentLearning";
-import DiscussionSheet from "@/components/DiscussionSheet";
+import DiscussionSheet from "@/components/Discussion/DiscussionSheet";
 import { useParams, useRouter } from "next/navigation";
 import {
   useLazyLoadFileFromCloudQuery,
   useLoadFileFromCloudQuery,
 } from "@/redux/services/courseApi";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppSelector } from "@/redux/hooks/reduxHooks";
 import { Lecture, Section } from "@/types/section.type";
 import { useGetContentByCourseIdQuery } from "@/redux/services/contentApi";
 import Content from "@/types/content.type";
@@ -21,7 +21,7 @@ import {
   useUpdateCurrentProgressMutation,
 } from "@/redux/services/courseProcessApi";
 import { CourseProcess } from "@/types/courseProcess.type";
-import PDFViewer from "@/components/PDFviewer";
+import PDFViewer from "@/components/PDF/PDFviewer";
 import { debounce } from "lodash";
 import { AiOutlineMenu } from "react-icons/ai";
 
@@ -79,7 +79,7 @@ function PageLearning() {
 
   useEffect(() => {
     if (lecture?.videoDuration === 0) {
-      loadFile(lecture.url);
+      loadFile(lecture?.url as string);
     }
     handleOpenMenu();
   }, [lecture]);
@@ -131,7 +131,7 @@ function PageLearning() {
                   section={section}
                   setLecture={setLecture}
                   currentProgress={courseProcess?.currentProgress as number}
-                  lectureActive={lecture?.ordinalNumber as number}
+                  lectureActive={lecture?.id as string}
                 />
               </div>
             );
@@ -208,7 +208,7 @@ function PageLearning() {
                     <video
                       ref={videoRef}
                       controls
-                      src={lecture?.url}
+                      src={lecture?.url as string}
                       className="w-full h-[500px] xs:h-[200px]"
                       onTimeUpdate={handleTimeUpdate}
                       autoPlay
@@ -225,7 +225,7 @@ function PageLearning() {
                     <PDFViewer
                       fileBase64={fileBase64 as string}
                       setReadDocComplete={setReadDocComplete}
-                      lectureUrl={lecture?.url}
+                      lectureUrl={lecture?.url as string}
                     />
                   )}
                 </div>

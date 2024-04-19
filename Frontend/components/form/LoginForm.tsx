@@ -22,7 +22,7 @@ import Link from "next/link";
 import { useLoginUserMutation } from "@/redux/services/authApi";
 import { LoginRequest } from "@/types/request.type";
 import { DataResponse } from "@/types/response.type";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch } from "@/redux/hooks/reduxHooks";
 import { setCredential } from "@/redux/features/authSlice";
 import showToast from "@/utils/showToast";
 import { ToastMessage, ToastStatus } from "@/utils/resources";

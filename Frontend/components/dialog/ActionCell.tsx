@@ -15,7 +15,7 @@ import { useUpdateUserAdminMutation } from "@/redux/services/userApi";
 import showToast from "@/utils/showToast";
 import { ToastMessage, ToastStatus } from "@/utils/resources";
 import { Course } from "@/types/course.type";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch } from "@/redux/hooks/reduxHooks";
 import { updateUser } from "@/redux/features/userSlice";
 import { useRouter } from "next/navigation";
 import { setManageCourse } from "@/redux/features/courseSlice";

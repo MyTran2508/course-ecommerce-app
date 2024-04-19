@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { setManageCourse } from "@/redux/features/courseSlice";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch } from "@/redux/hooks/reduxHooks";
 import { useUpdateAwaitingApprovalMutation } from "@/redux/services/courseApi";
 import { Course, CourseIssueReport } from "@/types/course.type";
 import { ToastMessage, ToastStatus } from "@/utils/resources";

@@ -1,5 +1,5 @@
 "use client";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppSelector } from "@/redux/hooks/reduxHooks";
 import Link from "next/link";
 import React, { Fragment, useState } from "react";
 import { AiFillProfile, AiOutlineInfoCircle } from "react-icons/ai";

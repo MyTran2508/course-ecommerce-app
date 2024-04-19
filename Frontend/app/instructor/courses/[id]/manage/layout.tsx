@@ -1,7 +1,7 @@
 import React from "react";
 import SideBar from "../../../SideBar";
 import Navbar from "./Navbar";
-import Footer from "@/components/Footer";
+import Footer from "@/components/Footer/Footer";
 
 function layout({ children }: { children: React.ReactNode }) {
   return (

@@ -1,45 +1,42 @@
 "use client";
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
-import { BiNotepad } from "react-icons/bi";
-import { BsQuestionCircle } from "react-icons/bs";
 import CourseContentLearning from "@/components/CourseContentLearning";
-import DiscussionSheet from "@/components/DiscussionSheet";
 import { useParams, useRouter } from "next/navigation";
-import {
-  useLazyLoadFileFromCloudQuery,
-  useLoadFileFromCloudQuery,
-} from "@/redux/services/courseApi";
-import { useAppSelector } from "@/redux/hooks";
-import { Lecture, Section } from "@/types/section.type";
+import { useLazyLoadFileFromCloudQuery } from "@/redux/services/courseApi";
+import { useAppSelector } from "@/redux/hooks/reduxHooks";
+import { ExQuiz, Lecture, Question, Section } from "@/types/section.type";
 import { useGetContentByCourseIdQuery } from "@/redux/services/contentApi";
-import Content from "@/types/content.type";
+import Content, { Description } from "@/types/content.type";
 import { Course } from "@/types/course.type";
-import {
-  useGetByUserIdAndCourseIdQuery,
-  useGetCourseAccessQuery,
-  useUpdateCurrentProgressMutation,
-} from "@/redux/services/courseProcessApi";
-import { CourseProcess } from "@/types/courseProcess.type";
-import PDFViewer from "@/components/PDFviewer";
-import { debounce } from "lodash";
+import PDFViewer from "@/components/PDF/PDFviewer";
 import { handleCountFieldsInSection } from "@/utils/function";
+import {
+  renderDetails,
+  renderRequirement,
+  renderTargetConsumers,
+} from "@/app/(root)/course/[id]/page";
+import { LectureType } from "@/utils/resources";
+import Quiz from "@/components/Lecture/Quiz/Client/Quiz";
+import { useLazyGetExQuizByIdQuery } from "@/redux/services/quizApi";
 
 function PreviewPage() {
   const param = useParams();
   const router = useRouter();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [courseId, setCourseId] = useState(param.id as string);
-  const [nameCourse, setNameCourse] = useState("");
+  const [course, setCourse] = useState<Course>();
   const [sections, setSections] = useState<Section[]>([]);
   const [lecture, setLecture] = useState<Lecture>();
-  const [readdoc, setReadDocComplete] = useState(false);
+  const [readDoc, setReadDocComplete] = useState(false);
+  const [description, setDescription] = useState<Description>();
   const [loadFile, { data: fileBase64, isSuccess: loadFileSuccess }] =
     useLazyLoadFileFromCloudQuery();
 
   const { data: contentData, isSuccess: getContentSuccess } =
     useGetContentByCourseIdQuery(courseId);
 
+  const [getExQuizById, { data: exQuiz }] = useLazyGetExQuizByIdQuery();
   useEffect(() => {
     if (getContentSuccess) {
       setSections(
@@ -47,13 +44,17 @@ function PreviewPage() {
           (section) => section.ordinalNumber !== -1
         )
       );
-      setNameCourse(((contentData?.data as Content).course as Course)?.name);
+      setCourse((contentData?.data as Content).course as Course);
+      setDescription((contentData?.data as Content).description);
     }
   }, [contentData]);
 
   useEffect(() => {
-    if (lecture?.videoDuration === 0) {
-      loadFile(lecture.url);
+    if (
+      (lecture?.url?.length as number) > 0 &&
+      lecture?.lectureType === LectureType.DOCUMENT
+    ) {
+      loadFile(lecture?.url as string);
     }
   }, [lecture]);
 
@@ -70,7 +71,7 @@ function PreviewPage() {
                   section={section}
                   setLecture={setLecture}
                   currentProgress={totalLectureCount}
-                  lectureActive={lecture?.ordinalNumber as number}
+                  lectureActive={lecture?.id as string}
                 />
               </div>
             );
@@ -91,7 +92,7 @@ function PreviewPage() {
               }
             >
               <IoIosArrowBack className="text-xl" />
-              {nameCourse}
+              {course?.name}
             </div>
             <div className="flex gap-10 mr-10 items-center">
               {/* <div className="flex gap-2">
@@ -107,22 +108,25 @@ function PreviewPage() {
         </div>
         <div className="flex">
           <div className="w-9/12 custom-scrollbar overflow-y-scroll h-2/3">
-            {/* <DiscussionSheet /> */}
             <div>
               <div>
                 {lecture?.videoDuration !== 0 ? (
-                  <video
-                    ref={videoRef}
-                    controls
-                    src={
-                      lecture?.url
-                      // loadFileSuccess
-                      //   ? `data:video/mp4;base64,${fileBase64}`
-                      //   : ""
-                    }
-                    className="w-full h-[500px]"
-                    autoPlay
-                  />
+                  <Fragment>
+                    {(lecture?.url?.length as number) > 0 ? (
+                      <video
+                        ref={videoRef}
+                        controls
+                        src={
+                          lecture?.url as string
+                          // loadFileSuccess
+                          //   ? `data:video/mp4;base64,${fileBase64}`
+                          //   : ""
+                        }
+                        className="w-full h-[500px]"
+                        autoPlay
+                      />
+                    ) : null}
+                  </Fragment>
                 ) : (
                   // <div>
                   //   <object
@@ -131,16 +135,39 @@ function PreviewPage() {
                   //     className="w-full h-[500px]"
                   //   />
                   // </div>
-
-                  <PDFViewer
-                    fileBase64={fileBase64 as string}
-                    setReadDocComplete={setReadDocComplete}
-                    lectureUrl={lecture?.url}
-                  />
+                  <Fragment>
+                    {lecture.lectureType === LectureType.DOCUMENT ? (
+                      <PDFViewer
+                        fileBase64={fileBase64 as string}
+                        setReadDocComplete={setReadDocComplete}
+                        lectureUrl={lecture?.url as string}
+                      />
+                    ) : (
+                      <Fragment>
+                        <div className="text-xl font-bold my-2 ml-10">
+                          {"Bài Kiểm Tra: " + lecture?.name}
+                        </div>
+                        <Quiz exQuiz={lecture.exQuiz as ExQuiz} />
+                      </Fragment>
+                    )}
+                  </Fragment>
                 )}
               </div>
 
-              <div className="text-xl font-bold mt-2 ml-4">{lecture?.name}</div>
+              <div className="text-xl font-bold my-2 ml-4">
+                {lecture?.lectureType !== LectureType.QUIZ_TEST
+                  ? lecture?.name
+                  : null}
+              </div>
+              <hr className="border-gray-300 my-10" />
+              <div className="xl:w-2/3 ml-10 xs:m-6">
+                <h2 className="text-2xl font-bold">Mô tả khóa học</h2>
+                <div className="text-3xl font-bold mb-6">{course?.name}</div>
+                <div className="font-light mb-2">{course?.subTitle}</div>
+                {renderTargetConsumers(description as Description)}
+                {renderRequirement(description as Description)}
+                {renderDetails(description as Description)}
+              </div>
             </div>
           </div>
           <div className="w-3/12 sticky z-30">

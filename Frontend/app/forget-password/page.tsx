@@ -1,6 +1,6 @@
 "use client";
-import ForgetPasswordFrom from "@/components/form/ForgetPasswordForm";
-import { useAppSelector } from "@/redux/hooks";
+import ForgetPasswordFrom from "@/components/Form/ForgetPasswordForm";
+import { useAppSelector } from "@/redux/hooks/reduxHooks";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { IoChevronBackCircleSharp } from "react-icons/io5";

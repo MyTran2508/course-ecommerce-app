@@ -1,7 +1,7 @@
 import { RoleType, User } from "@/types/user.type";
 import { Checkbox } from "@/components/ui/checkbox";
 import { FaRegCheckCircle, FaRegTimesCircle } from "react-icons/fa";
-import ActionsCell from "@/components/dialog/ActionCell";
+import ActionsCell from "@/components/Dialog/ActionCell";
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 import { ColumnDef } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
