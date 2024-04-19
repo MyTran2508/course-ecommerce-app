@@ -1,6 +1,6 @@
 "use client";
 import Loading from "@/app/(root)/user/personal/loading";
-import CourseContentForm from "@/components/Form/CourseContentForm";
+import CourseContentForm from "@/components/form/CourseContentForm";
 import { setContentId } from "@/redux/features/contentSlice";
 import { setParamCourseId } from "@/redux/features/courseSlice";
 import { setSections } from "@/redux/features/sectionSlice";

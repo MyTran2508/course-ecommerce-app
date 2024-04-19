@@ -1,6 +1,6 @@
 "use client";
 import Loading from "@/app/(root)/user/personal/loading";
-import CourseInforForm from "@/components/Form/CourseInforForm";
+import CourseInforForm from "@/components/form/CourseInforForm";
 import {
   setManageCourse,
   setParamCourseId,
