@@ -1,0 +1,18 @@
+$primary-color: #140b5c;
+$secondary-color: #0f0844;
+$facebook-color: #4267b2;
+$twitter-color: #1da1f2;
+$instagram-color: #e1306c;
+$linkdin-color: #0077b5;
+$youtube-color: #0077b5;
+$text-color: #5624d0;
+$font-weights: (
+  "light": 300,
+  "regular": 400,
+  "medium": 500,
+  "bold": 700,
+);
+
+@function weight($weight-name) {
+  @return map-get($map: $font-weights, $key: $weight-name);
+}
