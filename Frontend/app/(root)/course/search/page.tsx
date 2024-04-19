@@ -55,9 +55,6 @@ function SearchPage() {
       });
     setIsLoading(false);
   };
-  // useEffect(() => {
-  //   handleSearch();
-  // }, []);
 
   useEffect(() => {
     setIsLoading(true);

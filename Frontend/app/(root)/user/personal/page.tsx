@@ -1,5 +1,5 @@
 "use client";
-import PersonalForm from "@/components/form/PersonalForm";
+import PersonalForm from "@/components/Form/PersonalForm";
 import { AuthState } from "@/redux/features/authSlice";
 // import { useGetByUserNameQuery } from "@/redux/services/authApi";
 import { User } from "@/types/user.type";

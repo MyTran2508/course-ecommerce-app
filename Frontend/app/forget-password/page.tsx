@@ -1,5 +1,5 @@
 "use client";
-import ForgetPasswordFrom from "@/components/form/ForgetPasswordForm";
+import ForgetPasswordFrom from "@/components/Form/ForgetPasswordForm";
 import { useAppSelector } from "@/redux/hooks/reduxHooks";
 import { useRouter } from "next/navigation";
 import React from "react";

@@ -1,5 +1,5 @@
 "use client";
-import LoginForm from "@/components/form/LoginForm";
+import LoginForm from "@/components/Form/LoginForm";
 import { useAppSelector } from "@/redux/hooks/reduxHooks";
 import { useLoginUserMutation } from "@/redux/services/authApi";
 import { useRouter } from "next/navigation";

@@ -1,6 +1,6 @@
 "use client";
 import Loading from "@/app/(root)/user/personal/loading";
-import CourseSectionForm from "@/components/form/CourseSectionForm";
+import CourseSectionForm from "@/components/Form/CourseSectionForm";
 import { useGetContentByCourseIdQuery } from "@/redux/services/contentApi";
 import Content from "@/types/content.type";
 import { Section } from "@/types/section.type";
