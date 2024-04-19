@@ -29,7 +29,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useState, useEffect } from "react";
-import { courseColumns } from "@/components/Table/Columns";
+import { courseColumns } from "@/components/table/Columns";
 import {
   useFilterCourseAdminMutation,
   useGetAllCourseQuery,
