@@ -89,10 +89,17 @@ export const userApi = createApi({
       },
     }),
 
-    getAvatar: builder.query<AvatarResponse, string>({
+    // getAvatar: builder.query<AvatarResponse, string>({
+    //   query: (username) => ({
+    //     url: `api/users/user/photos/${username}`,
+    //     // responseHandler: "text",
+    //   }),
+    //   providesTags: () => [{ type: "User", id: "avatar" }],
+    // }),
+    getAvatar: builder.query<any, string>({
       query: (username) => ({
         url: `api/users/user/photos/${username}`,
-        // responseHandler: "text",
+        responseHandler: "text",
       }),
       providesTags: () => [{ type: "User", id: "avatar" }],
     }),

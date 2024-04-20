@@ -154,7 +154,10 @@ export default function Home() {
               Unleash unlimited knowledge with our online courses, invest in
               your bright future today
             </p>
-            <button className="bg-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto py-3 text-black">
+            <button
+              className="bg-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto py-3 text-black"
+              onClick={() => router.push("/course/search")}
+            >
               Get Started
             </button>
           </div>
@@ -194,7 +197,10 @@ export default function Home() {
             lifelong learning, opening doors to new opportunities and a brighter
             future
           </p>
-          <button className="bg-black text-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto md:mx-0 py-3">
+          <button
+            className="bg-black text-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto md:mx-0 py-3"
+            onClick={() => router.push("/course/search")}
+          >
             Get Started
           </button>
         </div>

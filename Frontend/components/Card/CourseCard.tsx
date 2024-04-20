@@ -90,7 +90,7 @@ function CourseCard(props: CourseProps) {
   };
   useEffect(() => {
     if (getCourseAccessSuccess) {
-      if ((courseAccess?.data as string) === "True") {
+      if ((courseAccess?.data as boolean) === true) {
         router.push(`/learning/${course.id as string}`);
       } else {
         router.push(`/course/${course.id as string}`);
@@ -151,7 +151,7 @@ function CourseCard(props: CourseProps) {
             {truncatedTitle}
           </CardTitle>
 
-          <div className="flex gap-1 justify-end items-end pr-2 pb-2 flex-col hover:cursor-pointer">
+          {/* <div className="flex gap-1 justify-end items-end pr-2 pb-2 flex-col hover:cursor-pointer">
             {isMyCourse && (
               <Fragment>
                 <div
@@ -180,7 +180,7 @@ function CourseCard(props: CourseProps) {
                 </div>
               </Fragment>
             )}
-          </div>
+          </div> */}
         </CardHeader>
         {isMyCourse || isInstructorCourse ? null : (
           <CardContent className=" mt-4 p-0 flex-between">

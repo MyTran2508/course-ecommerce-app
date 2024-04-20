@@ -20,7 +20,7 @@ function PagePersonal() {
 
   return (
     <div className="mt-10 mr-28 w-full">
-      <div className="sticky top-[80px] bg-white h-10">
+      <div className="sticky top-[80px]h-10">
         <div className="font-bold">
           <div className="flex-center">Thông Tin Cá Nhân </div>
         </div>

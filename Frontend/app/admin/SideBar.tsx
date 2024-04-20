@@ -15,7 +15,7 @@ function SideBar() {
 
   return (
     <div className="sticky top-0 flex flex-col bg-clip-border rounded-xl bg-orange-50 text-gray-700 h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 ">
-      <div className="mb-2 p-4 bg-white border border-orange-500 rounded-md">
+      <div className="mb-2 p-4border border-orange-500 rounded-md">
         <h5 className="flex-center gap-2 block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-gray-900">
           <SiScikitlearn className="text-3xl" />
           E-LEARNING ADMIN

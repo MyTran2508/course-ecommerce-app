@@ -55,13 +55,13 @@ function MyCourses() {
               <CardHeader className="flex-center flex-col gap-2.5 !p-0 hover:cursor-pointer">
                 <div className="h-fit w-full relative">
                   <div className="group">
-                    <div className=" bg-white border-none">
+                    <div className="  border-none">
                       <BiSolidMessageSquareAdd className="text-3xl w-40 h-20 xs:text-[10px]" />
                     </div>
 
                     <div className="inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
                       <div className="bg-orange-200 rounded-2xl py-2 px-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
-                        <Link href="/">Thêm Khóa Học</Link>
+                        <Link href="/course/search">Thêm Khóa Học</Link>
                       </div>
                     </div>
                   </div>

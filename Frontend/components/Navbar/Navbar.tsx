@@ -83,7 +83,8 @@ function Navbar() {
       > = {
         id: (userNameData?.data as User).id,
         username: (userNameData?.data as User).username,
-        photos: avatarData?.rawAvatar as string,
+        // photos: avatarData?.rawAvatar as string,
+        photos: avatarData as string,
         email: (userNameData?.data as User).email,
         roles: (userNameData?.data as User).roles,
       };
@@ -92,7 +93,8 @@ function Navbar() {
       setUserData(userNameData?.data as User);
     }
     if (avatarSuccess) {
-      setCurrentAvatar(avatarData.rawAvatar as string);
+      // setCurrentAvatar(avatarData.rawAvatar as string);
+      setCurrentAvatar(avatarData);
     }
   }, [userNameData, avatarData]);
 
@@ -142,6 +144,52 @@ function Navbar() {
           >
             <BiSearchAlt />
           </div>
+          <div>
+            <Menu>
+              <Menu.Button
+                className=" animate-background-shine bg-[linear-gradient(110deg,#FF8C00,45%,#ffff99,55%,#FF8C00)] bg-[length:250%_100%] bg-clip-text text-transparent rounded-xl border py-1 px-2"
+                data-aos="fade-up"
+              >
+                Account Test
+              </Menu.Button>
+              <Menu.Items className="absolute right-40 mt-2  origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-2">
+                <div className="px-1 py-1">
+                  <Transition
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <div className="flex flex-col space-y-2">
+                      <h2 className="font-bold italic"> User Account</h2>
+                      <div className="flex gap-2">
+                        <strong> Username: </strong>
+                        userDemo
+                      </div>
+                      <div className="flex gap-2">
+                        <strong> Password: </strong>
+                        userDemo
+                      </div>
+                      <hr></hr>
+                      <h2 className="font-bold italic"> Paypal Sandbox</h2>
+                      <div>
+                        <div className="flex gap-2">
+                          <strong> Username: </strong>
+                          sb-xgzqg28259118@personal.example.com
+                        </div>
+                        <div className="flex gap-2">
+                          <strong> Password: </strong>
+                          u.=5Om_p
+                        </div>
+                      </div>
+                    </div>
+                  </Transition>
+                </div>
+              </Menu.Items>
+            </Menu>
+          </div>
           {user?.username !== "" ? (
             <div className="flex-center gap-10">
               {roles && (roles as RoleType[])[0]?.id !== Role.USER ? (
@@ -157,7 +205,7 @@ function Navbar() {
                   )}
                 </Fragment>
               ) : (
-                <div className="xs:hidden">
+                <div className="xs:hidden flex gap-2">
                   <Link href={"/my-courses"}>Khóa Học Của Tôi</Link>
                 </div>
               )}
@@ -245,7 +293,7 @@ function Navbar() {
                             </Fragment>
                           ) : (
                             <Fragment>
-                              <div className="lg:hidden">
+                              <div className="lg:hidden flex">
                                 <Link href={"/my-courses"}>
                                   Khóa Học Của Tôi
                                 </Link>

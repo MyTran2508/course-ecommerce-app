@@ -64,7 +64,8 @@ function InstructorNavbar() {
       setUserData(userNameData.data as User);
     }
     if (avatarSuccess) {
-      setCurrentAvatar(avatarData.rawAvatar as string);
+      // setCurrentAvatar(avatarData.rawAvatar as string);
+      setCurrentAvatar(avatarData);
     }
   }, [userNameData, avatarData]);
 

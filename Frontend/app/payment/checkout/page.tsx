@@ -1,5 +1,5 @@
 "use client";
-import { Disclosure } from "@headlessui/react";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { BiRadioCircle, BiRadioCircleMarked } from "react-icons/bi";
@@ -46,7 +46,54 @@ function PageCheckout() {
           <Link href={"/"} className="text-2xl uppercase">
             E-LEANING
           </Link>
-          <div>
+
+          <div className="flex gap-5">
+            <div>
+              <Menu>
+                <Menu.Button
+                  className=" animate-background-shine bg-[linear-gradient(110deg,#FF8C00,45%,#ffff99,55%,#FF8C00)] bg-[length:250%_100%] bg-clip-text text-transparent rounded-xl border py-1 px-2"
+                  data-aos="fade-up"
+                >
+                  Account Test
+                </Menu.Button>
+                <Menu.Items className="absolute right-40 mt-2  origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-2">
+                  <div className="px-1 py-1">
+                    <Transition
+                      enter="transition ease-out duration-100"
+                      enterFrom="transform opacity-0 scale-95"
+                      enterTo="transform opacity-100 scale-100"
+                      leave="transition ease-in duration-75"
+                      leaveFrom="transform opacity-100 scale-100"
+                      leaveTo="transform opacity-0 scale-95"
+                    >
+                      <div className="flex flex-col space-y-2">
+                        <h2 className="font-bold italic"> User Account</h2>
+                        <div className="flex gap-2">
+                          <strong> Username: </strong>
+                          userDemo
+                        </div>
+                        <div className="flex gap-2">
+                          <strong> Password: </strong>
+                          userDemo
+                        </div>
+                        <hr></hr>
+                        <h2 className="font-bold italic"> Paypal Sandbox</h2>
+                        <div>
+                          <div className="flex gap-2">
+                            <strong> Username: </strong>
+                            sb-xgzqg28259118@personal.example.com
+                          </div>
+                          <div className="flex gap-2">
+                            <strong> Password: </strong>
+                            u.=5Om_p
+                          </div>
+                        </div>
+                      </div>
+                    </Transition>
+                  </div>
+                </Menu.Items>
+              </Menu>
+            </div>
             <Link href={"/cart"} className="hover:text-orange-400 font-bold">
               Cancel
             </Link>

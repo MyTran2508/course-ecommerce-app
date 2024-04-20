@@ -25,7 +25,7 @@ function SideBar() {
     <Fragment>
       {isOpenMenu ? (
         <Fragment>
-          <div className="mx-20 xs:mx-0 xs:absolute xs:z-20 h-full bg-white ">
+          <div className="mx-20 xs:mx-0 xs:absolute xs:z-20 h-full">
             <div className="flex h-full">
               <div className="p-4">
                 <div className="sticky top-[96px]  ">

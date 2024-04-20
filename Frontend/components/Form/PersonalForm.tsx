@@ -90,7 +90,8 @@ function PersonalForm(props: PersonalProps) {
   useEffect(() => {
     setDefaultValueFrom(handleSetDefaultValueFrom(userInfor));
     handleImageError(false);
-    setCurrentAvatar(avatarData.rawAvatar as string);
+    // setCurrentAvatar(avatarData.rawAvatar as string);
+    setCurrentAvatar(avatarData);
   }, [userInfor, avatarData]);
 
   const handleClickEdit = () => {
@@ -170,7 +171,7 @@ function PersonalForm(props: PersonalProps) {
     <div>
       <Form {...form}>
         <form className="mt-5 mx-2">
-          <div className="flex flex-col  sticky top-[120px] bg-white">
+          <div className="flex flex-col  sticky top-[120px] ">
             {!allowInput ? (
               <Fragment>
                 <div className="flex justify-end">
